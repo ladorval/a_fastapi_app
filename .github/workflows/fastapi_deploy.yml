@@ -6,7 +6,7 @@ on:
       - master
 
 env: 
-  HEALTHCHECK_URL: http://127.0.0.1:5000
+  HEALTHCHECK_URL: http://127.0.0.1:8000
 
 jobs:
   Deploying-FastAPI:
@@ -37,6 +37,14 @@ jobs:
         shell: bash -l {0}  # Required to ensure the environment is activated
         run: |
           nohup python main.py &
+
+      - name: Running Health Checks on the App # Health check needs to be on the same runner
+        run: |
+          for i in {1..10}; do
+            curl -s -o /dev/null -w "%{http_code}"  $HEALTHCHECK_URL | grep "200" && echo "Health check passed successfully" && exit 0|| echo "Waiting for service ...";
+            sleep 5;
+            done;
+            echo "Health check failed ***" && exit 1
 
   Health-Check:
     needs: Deploying-FastAPI
