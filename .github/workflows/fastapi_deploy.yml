@@ -37,6 +37,9 @@ jobs:
         shell: bash -l {0}  # Required to ensure the environment is activated
         run: |
           nohup python main.py &
+          echo "Quick Sanity Check!"
+          sleep 5
+          curl -s ${HEALTHCHECK_URL}/todos/
 
       - name: Running Health Checks on the App # Health check needs to be on the same runner
         run: |
