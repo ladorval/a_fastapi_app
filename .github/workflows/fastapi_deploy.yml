@@ -33,8 +33,7 @@ jobs:
           # Recommended: Use mamba for faster dependency resolution
           use-mamba: true
 
-      - name: Run commands in Conda environment
+      - name: Run the main module to make the App available.
         shell: bash -l {0}  # Required to ensure the environment is activated
         run: |
-          conda info
-          conda list
+          python main.py
