@@ -39,7 +39,7 @@ jobs:
           nohup python main.py &
 
   Health-Check:
-    needs: Deploying-FastAPI:
+    needs: Deploying-FastAPI
       runs-on: ubuntu-latest
      
       steps:
