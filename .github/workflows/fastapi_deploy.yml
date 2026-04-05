@@ -10,7 +10,7 @@ env:
 
 jobs:
   Deploying-FastAPI:
-    runs-on: ubuntu
+    runs-on: ubuntu-latest
 
 
     steps:
