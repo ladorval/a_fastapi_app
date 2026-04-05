@@ -23,8 +23,18 @@ jobs:
           python-version: '3.12'
 
       - name: Build a dedicate conda env.
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          python-version: "3.12"
+          # Optional: Automatically activate a custom environment
+          activate-environment: fastapi
+          # Optional: Use an environment.yml file from your repo
+          environment-file: env.yml
+          # Recommended: Use mamba for faster dependency resolution
+          use-mamba: true
+
+      - name: Run commands in Conda environment
+        shell: bash -l {0}  # Required to ensure the environment is activated
         run: |
-          wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-          bash Miniconda3-latest-Linux-x86_64.sh -b
-          /home/runner/minconda3/bin/conda env create -f env.yml
-          /home/runner/minconda3/bin/conda activate fastapi
+          conda info
+          conda list
