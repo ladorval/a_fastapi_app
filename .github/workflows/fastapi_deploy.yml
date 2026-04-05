@@ -36,4 +36,4 @@ jobs:
       - name: Run the main module to make the App available.
         shell: bash -l {0}  # Required to ensure the environment is activated
         run: |
-          python main.py
+          nohup python main.py &
