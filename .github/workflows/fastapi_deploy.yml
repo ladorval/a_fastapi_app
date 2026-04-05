@@ -39,7 +39,7 @@ jobs:
           nohup python main.py &
           echo "Quick Sanity Check!"
           sleep 5
-          curl -s ${HEALTHCHECK_URL}/todos/
+          curl -s ${HEALTHCHECK_URL}
 
       - name: Running Health Checks on the App # Health check needs to be on the same runner
         run: |
