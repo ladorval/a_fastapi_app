@@ -1,0 +1,43 @@
+name: Deploy FastApi App
+
+on: 
+  push: 
+    branches:
+      - main
+
+env: 
+  HEALTHCHECK_URL: http://127.0.0.1:5000
+
+jobs:
+  Deploying FastAPI ...:
+    runs-on: ubuntu
+
+
+    steps:
+      - name: Checkout the code base from github
+        uses: action/checkout@v5
+
+      - name: Setup the runner
+        uses: action/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Build Venv
+        run: |
+          wget https://anaconda.com
+          bash Miniconda3-latest-Linux-x86_64.sh
+          # sudo apt install python3.12-venv -y
+          # python3 -m vemv venv
+          # source venv/bin/activate
+
+      - name: Install the App dependencies
+          conda env create -f env.yml    
+          conda activate fastapi
+          # python -m pip install --upgrade pip
+          # pip install -r requirements.txt
+
+
+      - name: Run the App
+          run: |
+          nohup python3 main.py &
+     
