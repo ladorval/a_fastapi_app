@@ -22,7 +22,9 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Build Venv
+      - name: Build a dedicate conda env.
         run: |
           wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-          bash Miniconda3-latest-Linux-x86_64.sh
+          bash Miniconda3-latest-Linux-x86_64.sh -b
+          /root/minconda3/bin/conda env create -f env.yml
+          /root/minconda3/bin/conda activate fastapi
