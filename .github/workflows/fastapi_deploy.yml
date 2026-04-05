@@ -6,7 +6,7 @@ on:
       - master
 
 env: 
-  HEALTHCHECK_URL: http://127.0.0.1:8000
+  HEALTHCHECK_URL: http://127.0.0.1:8000/todos
 
 jobs:
   Deploying-FastAPI:
