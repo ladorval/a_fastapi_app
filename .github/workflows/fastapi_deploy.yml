@@ -38,6 +38,6 @@ jobs:
 
 
       - name: Run the App
-          run: |
+        run: |
           nohup python3 main.py &
      
